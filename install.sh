@@ -117,14 +117,14 @@ if [ -x "$(command -v pip3)" ]; then
   # Uninstall in case it exists
   pip3 uninstall wasienv -y || true
   # Install wasienv in the ~/.wasienv/bin directory
-  pip3 install wasienv --prefix=$INSTALL_DIRECTORY --upgrade
-  pip3 install wasienv --user
+  pip3 install git+https://github.com/artlogic/wasienv.git@artlogic --prefix=$INSTALL_DIRECTORY --upgrade
+  pip3 install git+https://github.com/artlogic/wasienv.git@artlogic --user
 else
   # Uninstall in case it exists
   pip uninstall wasienv -y || true
   # Install wasienv in the ~/.wasienv/bin directory
-  pip install wasienv --prefix=$INSTALL_DIRECTORY --upgrade
-  pip install wasienv --user
+  pip install git+https://github.com/artlogic/wasienv.git@artlogic --prefix=$INSTALL_DIRECTORY --upgrade
+  pip install git+https://github.com/artlogic/wasienv.git@artlogic --user
 fi
 
 wasienv_link
@@ -134,8 +134,8 @@ curl https://get.wasmer.io -sSfL | sh
 
 echo "\n${green}${bold}> Installing the required WASI SDKs${reset}"
 # unstable is the most stable version of the WASI sdk for now
-$INSTALL_DIRECTORY/bin/wasienv install-sdk unstable
-$INSTALL_DIRECTORY/bin/wasienv default-sdk unstable
+$INSTALL_DIRECTORY/bin/wasienv install-sdk 12
+$INSTALL_DIRECTORY/bin/wasienv default-sdk 12
 
 printf "\n${reset}${dim}wasienv will be available the next time you open the terminal.\n"
 printf "${reset}${dim}If you want to have the commands available now please execute:\n${reset}source $INSTALL_DIRECTORY/wasienv.sh$reset\n"
